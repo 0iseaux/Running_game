@@ -1,0 +1,13 @@
+Fonts used in this design:
+
+Font: Bebas
+Author: Flat-it
+Url: http://www.fontsquirrel.com/fonts/Bebas
+
+Font: Charis SIL
+Author: SIL International
+Url: http://www.fontsquirrel.com/fonts/Charis-SIL
+
+Font: Open Sans
+Author: Ascender Fonts
+Url: http://www.fontsquirrel.com/fonts/open-sans
