@@ -1,7 +1,7 @@
 "use strict"
 
-let player1 = prompt('Player1?', 'Player1')
-let player2 = prompt('Player2?', 'Player2')
+let player1 = prompt('Player1?', 'Player1');
+let player2 = prompt('Player2?', 'Player2');
 
 let stepCount1 = 0; 
 let stepCount2 = 0; 
@@ -11,7 +11,7 @@ let tickerInterval = setInterval(ticker, 100);
 
 let runner1 = document.querySelector("#runner1");
 
-function setPlayersName() {
+function insertPlayersName() {
     document.querySelector('#p1name').innerText = player1;
     document.querySelector('#p2name').innerText = player2;
 }
@@ -126,7 +126,9 @@ let r2 = new runner(player2)
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    setPlayersName();
+    insertPlayersName();
+
+    alert('How to Run: \n\Player 1: press A & D\n\Player 2: press J & L');
 
     setAnimals();
 
@@ -142,12 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
             stepCount1++;
         } else if (event.key === "j" || event.key === "J" || event.key === "l" || event.key === "L") {
             stepCount2++;
-        } else {
-            alert('Player 1 / 2: press A & D / J & L to RUN!')
         }
-    }
-    )
-
+    });
 })
 
 
