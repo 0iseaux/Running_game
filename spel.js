@@ -87,7 +87,7 @@ function ticker() {
 
 
 function cheat() {
-    document.querySelector("#runner1").addEventListener("mouseover", function (dq) {
+    document.querySelector("#runner1").addEventListener("mouseover", function (event) {
         document.querySelector("#runner1").innerText += "!🚫";
         stepCount1 = 0;
         let speed1 = document.querySelector("#speed1");
@@ -95,7 +95,7 @@ function cheat() {
         noCheat1.innerHTML=`${player1}! 🚫 CHEATING!`;
         document.querySelector(".auto").insertBefore(noCheat1,speed1);
     });
-    document.querySelector("#runner2").addEventListener("mouseover", function (dq) {
+    document.querySelector("#runner2").addEventListener("mouseover", function (event) {
         document.querySelector("#runner2").innerText += "!🚫";
         stepCount2 = 0;
         let speed2 = document.querySelector("#speed2");
@@ -104,8 +104,6 @@ function cheat() {
         document.querySelector(".auto").insertBefore(noCheat2,speed2);
     });
 }
-
-//hidden animals
 
 /*
 class runner {
@@ -119,7 +117,6 @@ class runner {
     }
 }
 
-
 let r1 = new runner(player1)
 let r2 = new runner(player2)
 */
@@ -132,6 +129,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setAnimals();
 
+    document.addEventListener("keydown", function (event) {
+        event.preventDefault();
+        if (event.key === "s") {
+            document.addEventListener("keydown", function (event) {
+                event.preventDefault();
+                if (event.key === "h")
+                    document.addEventListener("keydown", function (event) {
+                        event.preventDefault();
+                        if (event.key === "p") {
+                            document.querySelector("#runner1").innerText = "🐑";
+                        }
+                    })
+            }
+            )
+        } else if (event.key === "r") {
+            document.addEventListener("keydown", function (event) {
+                event.preventDefault();
+                if (event.key === "b")
+                    document.addEventListener("keydown", function (event) {
+                        event.preventDefault();
+                        if (event.key === "t") {
+                            document.querySelector("#runner2").innerText = "🐇";
+                        }
+                    })
+            }
+            )
+        }
+    });
+  
+        
     document.querySelector("#pauseResume").onclick = pauseResume;
 
     ticker();
@@ -147,8 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 })
-
-
 
 
 /*?higher average speed > more to the right + bg moves (even) faster*/
