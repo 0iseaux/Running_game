@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+
+}
+
+.bg { /*https://www.youtube.com/watch?v=e3_qXLoIFds*/
+    position: relative;
+    background: #00fdff url(spelbg_.jpg);
+    height: 100vh;
+    background-size:cover;
+} 
+
+
+.movingbg {
+    background-size:cover;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    animation: movebg 5s linear infinite;
+}
+
+
+@keyframes movebg{
+    from{ 
+        background-position: 0 0;
+    } 
+    to {
+        background-position: 100% 0;
+    }
+}
+
+.lanes {
+    display:block;
+    position:absolute;
+    width:100%;
+    height:auto;
+    bottom: 0;
+    padding:0;
+}
+
+#runner1 {
+    bottom: 8vh;
+}
+
+#runner2 {
+    bottom: 0vh;
+}
+
+.runner {
+    font-size:50px;
+    
+    -webkit-transform:rotateY(180deg); /* https://css-tricks.com/snippets/css/reversing-text/ */
+    -moz-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.running {
+    /*keyframe running posture*/
+    animation-name:running;
+    animation-fill-mode:forwards;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+
+    /*transition: hover: L>R*/
+    transition: left 2s ease-in;
+    position: absolute;
+    left:1%;
+}
+.running:hover {
+    position: absolute;
+    left:90%;
+}
+
+@keyframes running {
+        0% {
+            -webkit-transform: rotateY(160deg);
+            -moz-transform: rotateY(160deg);
+            -ms-transform: rotateY(160deg);
+            -o-transform: rotateY(160deg);
+            transform: rotateY(160deg); 
+        }
+        100% {
+            -webkit-transform: rotateY(200deg);
+            -moz-transform: rotateY(200deg);
+            -ms-transform: rotateY(200deg);
+            -o-transform: rotateY(200deg);
+            transform: rotateY(200deg); 
+        }
+        }    
+
+#stopstart {
+    position:relative;
+    float:left;
+    left:3vh;
+    top: 3vh;
+}
+
+.auto {
+    display:in-line block;
+    width:50%;
+    float:right;
+    margin-top:3vh;
+    margin-right:3vh;
+}
+
+.score {
+    position: relative;
+    display:flex;
+    float: right;
+    clear: both;
+}
+
+.speed {
+    position: relative;
+    display:flex;
+    float: right;
+    clear: both;
+
+}
+
+/*
+    0% {
+        left: 0%;
+        opacity:0.1;
+    }
+    50%  {
+        left:50%;
+        opacity:0.5; 
+    }
+    100% {
+        left:100%;
+        opacity:0.1; 
+    }
+} 
+https://codepen.io/tungshooter/pen/KpdyQK
+SASS
+keyframes(animationMovePosition)
+  99%
+    //top: 0
+    //left: 0
+
+    var keyframeMovePosition = getKeyframesRule("animationMovePosition"),
+        animateTo = {
+          top: $("#body-wrapper").scrollTop() + "px",
+          left: "50%"
+        };
+      
+    if (keyframeMovePosition !== null) {
+      keyframeMovePosition.deleteRule("99%");
+      keyframeMovePosition.appendRule("99% {top: " + animateTo.top + "; left: " + animateTo.left + "}");
+    }
+    
+*/
+
+
+
+
+
