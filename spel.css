@@ -10,7 +10,13 @@ body {
     background: #00fdff url(spelbg_.jpg);
     height: 100vh;
     background-size:cover;
+    
 } 
+
+#info {
+    display:flex;
+    justify-content: space-between;
+}
 
 
 .movingbg {
@@ -39,6 +45,28 @@ body {
     padding:0;
 }
 
+.pname {
+    font-size: 12px;
+    padding:0;
+    margin:0;
+}
+
+.p1p2djur {
+    max-width:60%;
+    float:left;
+}
+
+.djur {
+    font-size:20px;
+    height:30px;
+    padding-bottom:1px;
+    margin:1px;
+}
+
+.djur:hover{
+    background-color:turquoise;
+}
+
 #runner1 {
     bottom: 8vh;
 }
@@ -49,7 +77,6 @@ body {
 
 .runner {
     font-size:50px;
-    
     -webkit-transform:rotateY(180deg); /* https://css-tricks.com/snippets/css/reversing-text/ */
     -moz-transform:rotateY(180deg);
     -o-transform:rotateY(180deg);
@@ -65,13 +92,12 @@ body {
     animation-iteration-count: infinite;
 
     /*transition: hover: L>R*/
-    transition: left 2s ease-in;
+    transition: all 1s ease-in;
     position: absolute;
-    left:1%;
+    margin-left:1%;
 }
 .running:hover {
-    position: absolute;
-    left:90%;
+    margin-left:97%;
 }
 
 @keyframes running {
@@ -91,71 +117,54 @@ body {
         }
         }    
 
-#stopstart {
+#pauseResume {
     position:relative;
     float:left;
     left:3vh;
     top: 3vh;
+    font-size: 18px;
+    font-weight: bold;
+    color:white;
+    background-color: red;
+    clear:both;
+    padding:2px;
+    margin:0;
+}
+
+#pauseResume:hover{
+    text-transform:uppercase;
 }
 
 .auto {
     display:in-line block;
-    width:50%;
+    max-width:40%;
     float:right;
-    margin-top:3vh;
     margin-right:3vh;
+    padding:0;
+    margin:0;
+    font-size:13px;
 }
 
 .score {
     position: relative;
-    display:flex;
     float: right;
     clear: both;
 }
 
 .speed {
     position: relative;
-    display:flex;
     float: right;
     clear: both;
 
 }
 
-/*
-    0% {
-        left: 0%;
-        opacity:0.1;
-    }
-    50%  {
-        left:50%;
-        opacity:0.5; 
-    }
-    100% {
-        left:100%;
-        opacity:0.1; 
-    }
-} 
-https://codepen.io/tungshooter/pen/KpdyQK
-SASS
-keyframes(animationMovePosition)
-  99%
-    //top: 0
-    //left: 0
+.p1djur #turtle {
+    background-color:yellowgreen;
+}
 
-    var keyframeMovePosition = getKeyframesRule("animationMovePosition"),
-        animateTo = {
-          top: $("#body-wrapper").scrollTop() + "px",
-          left: "50%"
-        };
-      
-    if (keyframeMovePosition !== null) {
-      keyframeMovePosition.deleteRule("99%");
-      keyframeMovePosition.appendRule("99% {top: " + animateTo.top + "; left: " + animateTo.left + "}");
-    }
-    
-*/
-
-
+.p2djur #duck {
+    background-color:orange;
+}
 
 
 

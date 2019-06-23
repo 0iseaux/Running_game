@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--https://medium.com/@tanya/what-the-heck-is-npm-b8168f61e3b5-->
         <meta charset="utf-8">
         <title>Let's Run</title>
-        <link rel="stylesheet" href="spel.css">
-        <!--<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>-->
-        <script src="spel.js"></script>
+        <link rel="stylesheet" href="spel2.css">
+        <script src="spel2.js"></script>
         
     </header>
 <body>
 <div class="bg movingbg">
-        <button id="stopstart">STOP!</button>
-        <div class="auto">
+    <div id="info">
+    <div class="p1djur p1p2djur">
+        <p class="pname" id="p1name">Player1</p> 
+        <button id ="trex" class="djur djur1" data-djur="🦖" >🦖</button> 
+        <button id="sauropod" class="djur djur1" data-djur="🦕">🦕</button> 
+        <button id="cow" class="djur djur1" data-djur="🐄">🐄</button> 
+        <button id="giraffe" class="djur djur1" data-djur="🦒">🦒</button> 
+        <button id="elephant" class="djur djur1" data-djur="🐘">🐘</button> 
+        <button id="hedgehog" class="djur djur1" data-djur="🦔">🦔</button> 
+        <button id="duck" class="djur djur1" data-djur="🦆">🦆</button> 
+        <button id="turtle" class="djur djur1" data-djur="🐢">🐢</button>     
+    </div> 
+    <div class="p2djur p1p2djur">
+        <p class="pname" id="p2name">Player2</p> 
+        <button id ="trex" class="djur djur2" data-djur="🦖" >🦖</button> 
+        <button id="sauropod" class="djur djur2" data-djur="🦕">🦕</button> 
+        <button id="cow" class="djur djur2" data-djur="🐄">🐄</button> 
+        <button id="giraffe" class="djur djur2" data-djur="🦒">🦒</button> 
+        <button id="elephant" class="djur djur2" data-djur="🐘">🐘</button> 
+        <button id="hedgehog" class="djur djur2" data-djur="🦔">🦔</button> 
+        <button id="duck" class="djur djur2" data-djur="🦆">🦆</button> 
+        <button id="turtle" class="djur djur2" data-djur="🐢">🐢</button> 
+    </div>
+    
+    <div class="auto">
             <div class="speed" id="speed1">Speed:</div><br>
-            <div class="score" id="score1">Score</div><br>
-            <div class="speed" id="speed2"></div><br>
-            <div class="score" id="score2"></div><br>
-        </div>
-        <div class="lanes">
-            <div class="runner running" id="runner1">🐑</div>
-            <div class="runner running" id="runner2">🐇</div>
-        </div>
+            <div class="score" id="score1">Score:</div><br>
+            <br>
+            <div class="speed" id="speed2">Speed:</div><br>
+            <div class="score" id="score2">Score:</div><br>
+    </div>
+</div>
+    <button id="pauseResume">Pause!</button>
+
+    <div class="lanes">
+            <div class="runner running" id="runner1">🐢</div>
+            <div class="runner running" id="runner2">🦆</div>
+    </div>
         
 </div>
 
