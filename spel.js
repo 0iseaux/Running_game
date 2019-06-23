@@ -7,7 +7,7 @@ let stepCount1 = 0;
 let stepCount2 = 0; 
 let timeCount = 0;
 
-let tickerInterval = setInterval(ticker, 1); 
+let tickerInterval = setInterval(ticker, 100); 
 
 let runner1 = document.querySelector("#runner1");
 
@@ -69,14 +69,60 @@ function ticker() {
 
     if (stepCount1 >= 101) {
         clearInterval(tickerInterval);
-        alert(`Wow! ${player1} has won!`) 
+        if (document.querySelector("#runner1").innerText.includes("🚫")) {
+            alert(`Wow! ${player1} has cheated & won!`)
+        } else {
+            alert(`Wow! ${player1} has won!`)
+        };
     }
     else if (stepCount2 >= 101) {
         clearInterval(tickerInterval);
-        alert(`Woo! ${player2} has won!`) 
-    }   
+        if (document.querySelector("#runner2").innerText.includes("🚫")) {
+            alert(`Wow! ${player2} has cheated & won!`)
+        } else {
+            alert(`Woo! ${player2} has won!`)
+        }
+    }
 }
 
+
+function cheat() {
+    document.querySelector("#runner1").addEventListener("mouseover", function (dq) {
+        document.querySelector("#runner1").innerText += "!🚫";
+        stepCount1 = 0;
+        let speed1 = document.querySelector("#speed1");
+        let noCheat1 = document.createElement("p")
+        noCheat1.innerHTML=`${player1}! 🚫 CHEATING!`;
+        document.querySelector(".auto").insertBefore(noCheat1,speed1);
+    });
+    document.querySelector("#runner2").addEventListener("mouseover", function (dq) {
+        document.querySelector("#runner2").innerText += "!🚫";
+        stepCount2 = 0;
+        let speed2 = document.querySelector("#speed2");
+        let noCheat2 = document.createElement("p")
+        noCheat2.innerHTML=`${player2}! 🚫 CHEATING!`;
+        document.querySelector(".auto").insertBefore(noCheat2,speed2);
+    });
+}
+
+//hidden animals
+
+/*
+class runner {
+    constructor(playerName) {
+        this.name = playerName
+        document.querySelector('#p1name').innerText=
+    }
+
+    addStepCount() {
+        this.stepCount++
+    }
+}
+
+
+let r1 = new runner(player1)
+let r2 = new runner(player2)
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -88,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ticker();
 
-    //cheat();
+    cheat();
 
     document.addEventListener("keyup", function (event) {
         event.preventDefault();
@@ -100,12 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('Player 1 / 2: press A & D / J & L to RUN!')
         }
     }
-
     )
+
 })
 
 
 
 
 /*?higher average speed > more to the right + bg moves (even) faster*/
-g
