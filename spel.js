@@ -1,7 +1,7 @@
 "use strict"
 
-let player1 = prompt('Player1?', 'Player1');
-let player2 = prompt('Player2?', 'Player2');
+let player1 = prompt('Player1\'s name?', 'Player1');
+let player2 = prompt('Player2\'s name?', 'Player2');
 
 let stepCount1 = 0; 
 let stepCount2 = 0; 
@@ -87,21 +87,33 @@ function ticker() {
 
 
 function cheat() {
-    document.querySelector("#runner1").addEventListener("mouseover", function (event) {
-        document.querySelector("#runner1").innerText += "!🚫";
+    document.querySelector("#runner1").addEventListener("mouseover", function cheating1 (event) {
+        document.querySelector("#runner1").innerText += "🚫";
         stepCount1 = 0;
         let speed1 = document.querySelector("#speed1");
         let noCheat1 = document.createElement("p")
         noCheat1.innerHTML=`${player1}! 🚫 CHEATING!`;
-        document.querySelector(".auto").insertBefore(noCheat1,speed1);
+        document.querySelector(".auto").insertBefore(noCheat1, speed1);
+        if ((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length === 9) {
+            console.log((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length);
+            document.querySelector("#runner1").innerText = "🏳";
+            document.querySelector("#runner1").removeEventListener("mouseover", cheating1)
+            document.querySelector("#runner1").classList.remove('cancheat');
+        }
     });
-    document.querySelector("#runner2").addEventListener("mouseover", function (event) {
-        document.querySelector("#runner2").innerText += "!🚫";
+    document.querySelector("#runner2").addEventListener("mouseover", function cheating2 (event) {
+        document.querySelector("#runner2").innerText += "🚫";
         stepCount2 = 0;
         let speed2 = document.querySelector("#speed2");
         let noCheat2 = document.createElement("p")
         noCheat2.innerHTML=`${player2}! 🚫 CHEATING!`;
-        document.querySelector(".auto").insertBefore(noCheat2,speed2);
+        document.querySelector(".auto").insertBefore(noCheat2, speed2);
+        if ((document.querySelector("#runner2").innerText.match(/🚫/g) || []).length === 9) {
+            console.log((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length);
+            document.querySelector("#runner2").innerText = "🏳";
+            document.querySelector("#runner2").removeEventListener("mouseover", cheating2)
+            document.querySelector("#runner2").classList.remove('cancheat');
+        }
     });
 }
 
@@ -138,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.addEventListener("keydown", function (event) {
                         event.preventDefault();
                         if (event.key === "p") {
-                            document.querySelector("#runner1").innerText = "🐑";
+                            document.querySelector("#runner1").innertext= '🐑';
                         }
                     })
             }
@@ -150,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.addEventListener("keydown", function (event) {
                         event.preventDefault();
                         if (event.key === "t") {
-                            document.querySelector("#runner2").innerText = "🐇";
+                            document.querySelector("#runner2").innerHTML = '🐇';
                         }
                     })
             }

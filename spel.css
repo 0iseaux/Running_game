@@ -1,70 +1,67 @@
 body {
     margin: 0;
     padding: 0;
-    font-family:sans-serif;
-
+    font-family: sans-serif;
 }
 
-.bg { /*https://www.youtube.com/watch?v=e3_qXLoIFds*/
+.bg {
+    /*https://www.youtube.com/watch?v=e3_qXLoIFds*/
     position: relative;
     background: #00fdff url(spelbg_.jpg);
     height: 100vh;
-    background-size:cover;
-    
-} 
+    background-size: cover;
+}
 
 #info {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
-
 .movingbg {
-    background-size:cover;
+    background-size: cover;
     background-position: 0 0;
     background-repeat: repeat-x;
     animation: movebg 5s linear infinite;
 }
 
-
-@keyframes movebg{
-    from{ 
+@keyframes movebg {
+    from {
         background-position: 0 0;
-    } 
+    }
     to {
         background-position: 100% 0;
     }
 }
 
 .lanes {
-    display:block;
-    position:absolute;
-    width:100%;
-    height:auto;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: auto;
     bottom: 0;
-    padding:0;
+    padding: 0;
 }
 
 .pname {
     font-size: 12px;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 .p1p2djur {
-    max-width:60%;
-    float:left;
+    max-width: 60%;
+    float: left;
 }
 
 .djur {
-    font-size:20px;
-    height:30px;
-    padding-bottom:1px;
-    margin:1px;
+    font-size: 20px;
+    height: 30px;
+    padding-bottom: 1px;
+    margin: 1px;
 }
 
-.djur:hover{
-    background-color:black;
+.djur:hover {
+    background-color: black;
 }
 
 #runner1 {
@@ -76,73 +73,74 @@ body {
 }
 
 .runner {
-    font-size:50px;
-    -webkit-transform:rotateY(180deg); /* https://css-tricks.com/snippets/css/reversing-text/ */
-    -moz-transform:rotateY(180deg);
-    -o-transform:rotateY(180deg);
-    -ms-transform:rotateY(180deg);
+    font-size: 50px;
+    -webkit-transform: rotateY(180deg);
+    /* https://css-tricks.com/snippets/css/reversing-text/ */
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
 .running {
     /*keyframe running posture*/
-    animation-name:running;
-    animation-fill-mode:forwards;
+    animation-name: running;
+    animation-fill-mode: forwards;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
-
     /*transition: hover: L>R*/
     transition: all 1s ease-in;
     position: absolute;
-    margin-left:1%;
+    margin-left: 1%;
 }
-.running:hover {
-    margin-left:97%;
+
+.running.cancheat:hover {
+    margin-left: 97%;
 }
 
 @keyframes running {
-        0% {
-            -webkit-transform: rotateY(160deg);
-            -moz-transform: rotateY(160deg);
-            -ms-transform: rotateY(160deg);
-            -o-transform: rotateY(160deg);
-            transform: rotateY(160deg); 
-        }
-        100% {
-            -webkit-transform: rotateY(200deg);
-            -moz-transform: rotateY(200deg);
-            -ms-transform: rotateY(200deg);
-            -o-transform: rotateY(200deg);
-            transform: rotateY(200deg); 
-        }
-        }    
+    0% {
+        -webkit-transform: rotateY(160deg);
+        -moz-transform: rotateY(160deg);
+        -ms-transform: rotateY(160deg);
+        -o-transform: rotateY(160deg);
+        transform: rotateY(160deg);
+    }
+    100% {
+        -webkit-transform: rotateY(200deg);
+        -moz-transform: rotateY(200deg);
+        -ms-transform: rotateY(200deg);
+        -o-transform: rotateY(200deg);
+        transform: rotateY(200deg);
+    }
+}
 
 #pauseResume {
-    position:relative;
-    float:left;
-    left:3vh;
+    position: relative;
+    float: left;
+    left: 3vh;
     top: 3vh;
     font-size: 18px;
     font-weight: bold;
-    color:white;
+    color: white;
     background-color: red;
-    clear:both;
-    padding:2px;
-    margin:0;
+    clear: both;
+    padding: 2px;
+    margin: 0;
 }
 
-#pauseResume:hover{
-    text-transform:uppercase;
+#pauseResume:hover {
+    text-transform: uppercase;
 }
 
 .auto {
-    display:in-line block;
-    max-width:40%;
-    float:right;
-    margin-right:3vh;
-    padding:0;
-    margin:0;
-    font-size:13px;
+    display: in-line block;
+    max-width: 40%;
+    float: right;
+    margin-right: 3vh;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
 }
 
 .score {
@@ -155,16 +153,12 @@ body {
     position: relative;
     float: right;
     clear: both;
-
 }
 
 .p1djur #turtle {
-    background-color:yellowgreen;
+    background-color: yellowgreen;
 }
 
 .p2djur #duck {
-    background-color:orange;
+    background-color: orange;
 }
-
-
-
