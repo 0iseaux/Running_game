@@ -1,191 +1,183 @@
-"use strict"
+'use strict';
 
-let player1 = prompt('Player1\'s name?', 'Player1');
-let player2 = prompt('Player2\'s name?', 'Player2');
+/*?higher average speed > more to the right + bg moves (even) faster*/
+// clearInterval(p1.ticker); or clearInterval(tickerInterval1);?
 
-let stepCount1 = 0; 
-let stepCount2 = 0; 
 let timeCount = 0;
 
-let tickerInterval = setInterval(ticker, 100); 
+let runner1 = document.querySelector('#runner1');
+let runner2 = document.querySelector('#runner2');
 
-let runner1 = document.querySelector("#runner1");
+class Player {
+    constructor(nr, stepCount) {
+        this.nr = nr;
+        this.name = prompt(`Player${nr}'s name?`, `Player${nr}`);
+        this.stepCount = 0;
+    }
+    insertPlayersName = () => {
+        document.querySelector(`#p${this.nr}name`).innerText = `Player${this.nr}`;
+    };
 
-function insertPlayersName() {
-    document.querySelector('#p1name').innerText = player1;
-    document.querySelector('#p2name').innerText = player2;
-}
+    setAnimals() {
+        // document.createElement('button')?
 
-
-function setAnimals() {
-    document.querySelectorAll('.djur1').forEach(function (button) {
-        button.onclick = function () {
-            document.querySelector('#runner1').innerText = button.dataset.djur;
-            button.style.backgroundColor = "yellowgreen";
-            button.classList.add("selected");
-            document.querySelectorAll("button.djur1:not(.selected)").forEach(function (button) {button.style.backgroundColor = "white"; });
-            button.classList.remove("selected");
-        };
-    document.querySelectorAll('.djur2').forEach(function (button) {
-        button.onclick = function () {
-            document.querySelector('#runner2').innerText = button.dataset.djur;
-            button.style.backgroundColor = "orange";
-            button.classList.add("selected");
-            document.querySelectorAll("button.djur2:not(.selected)").forEach(function (button) {button.style.backgroundColor = "white"; });
-            button.classList.remove("selected");
+        document.querySelectorAll(`.djur${this.nr}`).forEach(button => {
+            button.onclick = () => {
+                document.querySelector(`#runner${this.nr}`).innerText = button.dataset.djur;
+                button.style.backgroundColor = 'yellowgreen';
+                button.classList.add('selected');
+                document
+                    .querySelectorAll(`button.djur${this.nr}:not(.selected)`)
+                    .forEach(function(button) {
+                        button.style.backgroundColor = 'white';
+                    });
+                button.classList.remove('selected');
             };
-        })
-    })
+        });
+    }
+
+    ticker = () => {
+        timeCount++;
+        document.querySelector(
+            `#score${this.nr}`,
+        ).innerHTML = `Player${this.nr}'s Score: ${this.stepCount}`;
+        document.querySelector(`#speed${this.nr}`).innerHTML = `Player${
+            this.nr
+        }'s Speed: ${Math.round((this.stepCount * 1000) / timeCount)}`;
+        document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}%`;
+    };
+
+    cheat = () => {
+        document.querySelector(`#runner${this.nr}`).addEventListener('mouseover', event => {
+            document.querySelector(`#runner${this.nr}`).innerText += '🚫';
+            this.stepCount = 0;
+            let speed = document.querySelector(`#speed${this.nr}`);
+            let noCheat = document.createElement('p');
+            noCheat.innerHTML = `Player${this.nr}! 🚫 CHEATING!`;
+            document.querySelector('.auto').insertBefore(noCheat, speed);
+            if (
+                (document.querySelector(`#runner${this.nr}`).innerText.match(/🚫/g) || [])
+                    .length === 9
+            ) {
+                console.log(
+                    (document.querySelector(`#runner${this.nr}`).innerText.match(/🚫/g) || [])
+                        .length,
+                );
+                document.querySelector(`#runner${this.nr}`).innerText = '🏳';
+                document
+                    .querySelector(`#runner${this.nr}`)
+                    .removeEventListener('mouseover', cheating);
+                document.querySelector(`#runner${this.nr}`).classList.remove('cancheat');
+            }
+        });
+    };
 }
 
 function pauseResume() {
-    if (document.querySelector('#pauseResume').innerText === "PAUSE!") {
-        document.querySelectorAll('.runner').forEach(function (runners) {
-            runners.classList.remove('running')
-        });;
-        ticker();
-        document.querySelector('#pauseResume').innerText = "Resume!";
-        document.querySelector('.bg').classList.remove('movingbg'); //???????
-        clearInterval(ticker);
-        //document.querySeelector('.runner').style.transform="rotateX(180deg)";
-    } else {
-        document.querySelectorAll('.runner').forEach(function (runners) {
-            runners.classList.add('running')
+    if (document.querySelector('#pauseResume').textContent === 'Pause!') {
+        document.querySelectorAll('.runner').forEach(runners => {
+            runners.classList.remove('running');
         });
-        document.querySelector('#pauseResume').innerText = "Pause!";
-        document.querySelector('.bg').classList.add('movingbg');
-        //document.querySeelector('.runner').style.transform="rotateX(0deg)";
+        p1.ticker();
+        p2.ticker();
+        document.querySelector('#pauseResume').textContent = 'Resume!';
+        document.querySelector('.movingbg').className = 'bg';
+        clearInterval(p1.ticker);
+        clearInterval(p2.ticker);
+        //document.querySelector('.runner').style.transform="rotateX(180deg)";
+    } else {
+        document.querySelectorAll('.runner').forEach(runners => {
+            runners.classList.add('running');
+        });
+        p1.ticker();
+        p2.ticker();
+        document.querySelector('#pauseResume').innerText = 'Pause!';
+        document.querySelector('.bg').className += ' movingbg';
+        //document.querySelector('.runner').style.transform="rotateX(0deg)";
+    }
+}
+
+const whoWins = () => {
+    if (p1.stepCount >= 101) {
+        clearInterval(tickerInterval1);
+        if (document.querySelector('#runner1').innerText.includes('🚫')) {
+            alert(`Wow! ${p1.name} has cheated & won!`);
+        } else {
+            alert(`Wow! ${p1.name} has won!`);
+        }
+    } else if (p2.stepCount >= 101) {
+        clearInterval(tickerInterval2);
+        if (document.querySelector('#runner2').innerText.includes('🚫')) {
+            alert(`Wow! ${p2.name} has cheated & won!`);
+        } else {
+            alert(`Woo! ${p2.name} has won!`);
+        }
     }
 };
 
-function ticker() {
-    timeCount++;
-    document.querySelector("#score1").innerHTML = `${player1}'s Score: ${stepCount1}`;
-    document.querySelector("#speed1").innerHTML = `${player1}'s Speed: ${Math.round(stepCount1 * 1000 / timeCount)}`;
-    document.querySelector("#runner1").style.left = `${stepCount1}%`;
-    document.querySelector("#score2").innerHTML = `${player2}'s Score: ${stepCount2}`;
-    document.querySelector("#speed2").innerHTML = `${player2}'s Speed: ${Math.round(stepCount2 * 1000 / timeCount)}`;
-    document.querySelector("#runner2").style.left = `${stepCount2}%`;
+let p1 = new Player('1');
+let p2 = new Player('2');
 
-    if (stepCount1 >= 101) {
-        clearInterval(tickerInterval);
-        if (document.querySelector("#runner1").innerText.includes("🚫")) {
-            alert(`Wow! ${player1} has cheated & won!`)
-        } else {
-            alert(`Wow! ${player1} has won!`)
-        };
-    }
-    else if (stepCount2 >= 101) {
-        clearInterval(tickerInterval);
-        if (document.querySelector("#runner2").innerText.includes("🚫")) {
-            alert(`Wow! ${player2} has cheated & won!`)
-        } else {
-            alert(`Woo! ${player2} has won!`)
-        }
-    }
-}
+let tickerInterval1 = setInterval(p1.ticker, 100);
+let tickerInterval2 = setInterval(p2.ticker, 100);
 
+document.addEventListener('DOMContentLoaded', () => {
+    p1.insertPlayersName();
+    p2.insertPlayersName();
 
-function cheat() {
-    document.querySelector("#runner1").addEventListener("mouseover", function cheating1 (event) {
-        document.querySelector("#runner1").innerText += "🚫";
-        stepCount1 = 0;
-        let speed1 = document.querySelector("#speed1");
-        let noCheat1 = document.createElement("p")
-        noCheat1.innerHTML=`${player1}! 🚫 CHEATING!`;
-        document.querySelector(".auto").insertBefore(noCheat1, speed1);
-        if ((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length === 9) {
-            console.log((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length);
-            document.querySelector("#runner1").innerText = "🏳";
-            document.querySelector("#runner1").removeEventListener("mouseover", cheating1)
-            document.querySelector("#runner1").classList.remove('cancheat');
-        }
-    });
-    document.querySelector("#runner2").addEventListener("mouseover", function cheating2 (event) {
-        document.querySelector("#runner2").innerText += "🚫";
-        stepCount2 = 0;
-        let speed2 = document.querySelector("#speed2");
-        let noCheat2 = document.createElement("p")
-        noCheat2.innerHTML=`${player2}! 🚫 CHEATING!`;
-        document.querySelector(".auto").insertBefore(noCheat2, speed2);
-        if ((document.querySelector("#runner2").innerText.match(/🚫/g) || []).length === 9) {
-            console.log((document.querySelector("#runner1").innerText.match(/🚫/g) || []).length);
-            document.querySelector("#runner2").innerText = "🏳";
-            document.querySelector("#runner2").removeEventListener("mouseover", cheating2)
-            document.querySelector("#runner2").classList.remove('cancheat');
-        }
-    });
-}
+    alert('How to Run: \nPlayer 1: press A & D\nPlayer 2: press J & L');
 
-/*
-class runner {
-    constructor(playerName) {
-        this.name = playerName
-        document.querySelector('#p1name').innerText=
-    }
+    p1.setAnimals();
+    p2.setAnimals();
 
-    addStepCount() {
-        this.stepCount++
-    }
-}
-
-let r1 = new runner(player1)
-let r2 = new runner(player2)
-*/
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    insertPlayersName();
-
-    alert('How to Run: \n\Player 1: press A & D\n\Player 2: press J & L');
-
-    setAnimals();
-
-    document.addEventListener("keydown", function (event) {
+    document.addEventListener('keydown', event => {
         event.preventDefault();
-        if (event.key === "s") {
-            document.addEventListener("keydown", function (event) {
+        if (event.key === 's') {
+            document.addEventListener('keydown', event => {
                 event.preventDefault();
-                if (event.key === "h")
-                    document.addEventListener("keydown", function (event) {
+                if (event.key === 'h')
+                    document.addEventListener('keydown', event => {
                         event.preventDefault();
-                        if (event.key === "p") {
-                            document.querySelector("#runner1").innertext= '🐑';
+                        if (event.key === 'p') {
+                            document.querySelector('#runner1').innertext = '🐑';
                         }
-                    })
-            }
-            )
-        } else if (event.key === "r") {
-            document.addEventListener("keydown", function (event) {
+                    });
+            });
+        } else if (event.key === 'r') {
+            document.addEventListener('keydown', event => {
                 event.preventDefault();
-                if (event.key === "b")
-                    document.addEventListener("keydown", function (event) {
+                if (event.key === 'b')
+                    document.addEventListener('keydown', event => {
                         event.preventDefault();
-                        if (event.key === "t") {
-                            document.querySelector("#runner2").innerHTML = '🐇';
+                        if (event.key === 't') {
+                            document.querySelector('#runner2').innerHTML = '🐇';
                         }
-                    })
-            }
-            )
+                    });
+            });
         }
     });
-  
-        
-    document.querySelector("#pauseResume").onclick = pauseResume;
 
-    ticker();
+    document.querySelector('#pauseResume').onclick = pauseResume;
 
-    cheat();
+    p1.ticker();
+    p2.ticker();
 
-    document.addEventListener("keyup", function (event) {
+    p1.cheat();
+    p2.cheat();
+
+    whoWins();
+
+    document.addEventListener('keyup', event => {
         event.preventDefault();
-        if (event.key === "a" || event.key === "A" || event.key === "d" || event.key === "D") {
-            stepCount1++;
-        } else if (event.key === "j" || event.key === "J" || event.key === "l" || event.key === "L") {
-            stepCount2++;
+        if (event.key === 'a' || event.key === 'A' || event.key === 'd' || event.key === 'D') {
+            p1.stepCount++;
+        } else if (
+            event.key === 'j' ||
+            event.key === 'J' ||
+            event.key === 'l' ||
+            event.key === 'L'
+        ) {
+            p2.stepCount++;
         }
     });
-})
-
-
-/*?higher average speed > more to the right + bg moves (even) faster*/
+});
