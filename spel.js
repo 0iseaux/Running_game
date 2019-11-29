@@ -40,7 +40,6 @@ class Player {
 
     ticker = () => {
         timeCount++;
-        console.log(timeCount);
         document.querySelector(
             `#score${this.nr}`,
         ).innerHTML = `Player${this.nr}'s Score: ${this.stepCount}`;
@@ -79,29 +78,31 @@ class Player {
 
 const pauseResume = () => {
     if (document.querySelector('#pauseResume').textContent === 'Pause!') {
+        document.querySelector('#pauseResume').textContent = 'Resume!';
+        document.querySelector('.movingbg').className = 'bg';
+
         document.querySelectorAll('.runner').forEach(runners => {
-            runners.classList.remove('running');
+            runners.classList.remove('runner');
         });
 
         //fixing pausing positions...
         // p1.ticker();
         // p2.ticker();
-        document.querySelector('#runner1').style.left = 'p1.stepCount';
-        document.querySelector('#runner2').style.left = 'p2.stepCount';
-
-        document.querySelector('#pauseResume').textContent = 'Resume!';
-        document.querySelector('.movingbg').className = 'bg';
+        document.querySelector('#runner1').style.left = `${p1.stepCount}vw`;
+        document.querySelector('#runner2').style.left = `${p2.stepCount}vw`;
 
         clearInterval(interval1);
         clearInterval(interval2);
     } else {
+        document.querySelector('#pauseResume').innerText = 'Pause!';
+        document.querySelector('.bg').className += ' movingbg';
+
         document.querySelectorAll('.runner').forEach(runners => {
             runners.classList.add('running');
         });
         interval1 = setInterval(p1.ticker, 50);
         interval2 = setInterval(p2.ticker, 50);
-        document.querySelector('#pauseResume').innerText = 'Pause!';
-        document.querySelector('.bg').className += ' movingbg';
+
         //document.querySelector('.runner').style.transform="rotateX(0deg)";
     }
 };
