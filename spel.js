@@ -47,7 +47,6 @@ class Player {
             this.nr
         }'s Speed: ${Math.round((this.stepCount * 1000) / timeCount)}`;
         if (this.stepCount >= 97) {
-            let pos = 97;
             document.querySelector(`#runner${this.nr}`).style.right = '0vw';
         } else {
             document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}vw`;

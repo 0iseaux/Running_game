@@ -66,10 +66,12 @@ body {
 
 #runner1 {
     bottom: 8vh;
+    font-size: 50px;
 }
 
 #runner2 {
     bottom: 0vh;
+    font-size: 50px;
 }
 
 .runner {
