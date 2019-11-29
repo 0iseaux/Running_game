@@ -1,9 +1,11 @@
 'use strict';
 
 /*?higher average speed > more to the right + bg moves (even) faster*/
-// clearInterval(p1.ticker); or clearInterval(tickerInterval1);?
+// pausing positions
 
 let timeCount = 0;
+let interval1;
+let interval2;
 
 let runner1 = document.querySelector('#runner1');
 let runner2 = document.querySelector('#runner2');
@@ -38,6 +40,7 @@ class Player {
 
     ticker = () => {
         timeCount++;
+        console.log(timeCount);
         document.querySelector(
             `#score${this.nr}`,
         ).innerHTML = `Player${this.nr}'s Score: ${this.stepCount}`;
@@ -64,10 +67,6 @@ class Player {
                 (document.querySelector(`#runner${this.nr}`).innerText.match(/🚫/g) || [])
                     .length === 9
             ) {
-                console.log(
-                    (document.querySelector(`#runner${this.nr}`).innerText.match(/🚫/g) || [])
-                        .length,
-                );
                 document.querySelector(`#runner${this.nr}`).innerText = '🏳';
                 document
                     .querySelector(`#runner${this.nr}`)
@@ -78,40 +77,45 @@ class Player {
     };
 }
 
-function pauseResume() {
+const pauseResume = () => {
     if (document.querySelector('#pauseResume').textContent === 'Pause!') {
         document.querySelectorAll('.runner').forEach(runners => {
             runners.classList.remove('running');
         });
-        p1.ticker();
-        p2.ticker();
+
+        //fixing pausing positions...
+        // p1.ticker();
+        // p2.ticker();
+        document.querySelector('#runner1').style.left = 'p1.stepCount';
+        document.querySelector('#runner2').style.left = 'p2.stepCount';
+
         document.querySelector('#pauseResume').textContent = 'Resume!';
         document.querySelector('.movingbg').className = 'bg';
-        clearInterval(p1.ticker);
-        clearInterval(p2.ticker);
-        //document.querySelector('.runner').style.transform="rotateX(180deg)";
+
+        clearInterval(interval1);
+        clearInterval(interval2);
     } else {
         document.querySelectorAll('.runner').forEach(runners => {
             runners.classList.add('running');
         });
-        p1.ticker();
-        p2.ticker();
+        interval1 = setInterval(p1.ticker, 50);
+        interval2 = setInterval(p2.ticker, 50);
         document.querySelector('#pauseResume').innerText = 'Pause!';
         document.querySelector('.bg').className += ' movingbg';
         //document.querySelector('.runner').style.transform="rotateX(0deg)";
     }
-}
+};
 
 const whoWins = () => {
     if (p1.stepCount >= 97) {
-        clearInterval(tickerInterval1);
+        clearInterval(interval1);
         if (document.querySelector('#runner1').innerText.includes('🚫')) {
             alert(`Wow! ${p1.name} has cheated & won!`);
         } else {
             alert(`Wow! ${p1.name} has won!`);
         }
     } else if (p2.stepCount >= 97) {
-        clearInterval(tickerInterval2);
+        clearInterval(interval2);
         if (document.querySelector('#runner2').innerText.includes('🚫')) {
             alert(`Wow! ${p2.name} has cheated & won!`);
         } else {
@@ -123,14 +127,11 @@ const whoWins = () => {
 let p1 = new Player('1');
 let p2 = new Player('2');
 
-let tickerInterval1 = setInterval(p1.ticker, 100);
-let tickerInterval2 = setInterval(p2.ticker, 100);
-
 document.addEventListener('DOMContentLoaded', () => {
+    alert('How to Run: \nPlayer 1: press A & D\nPlayer 2: press J & L');
+
     p1.insertPlayersName();
     p2.insertPlayersName();
-
-    alert('How to Run: \nPlayer 1: press A & D\nPlayer 2: press J & L');
 
     p1.setAnimals();
     p2.setAnimals();
@@ -162,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelector('#pauseResume').onclick = pauseResume;
+    interval1 = setInterval(p1.ticker, 50);
+    interval2 = setInterval(p2.ticker, 50);
 
-    p1.ticker();
-    p2.ticker();
+    document.querySelector('#pauseResume').onclick = pauseResume;
 
     p1.cheat();
     p2.cheat();
