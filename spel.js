@@ -44,7 +44,12 @@ class Player {
         document.querySelector(`#speed${this.nr}`).innerHTML = `Player${
             this.nr
         }'s Speed: ${Math.round((this.stepCount * 1000) / timeCount)}`;
-        document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}%`;
+        if (this.stepCount >= 97) {
+            let pos = 97;
+            document.querySelector(`#runner${this.nr}`).style.right = '0vw';
+        } else {
+            document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}vw`;
+        }
     };
 
     cheat = () => {
@@ -98,14 +103,14 @@ function pauseResume() {
 }
 
 const whoWins = () => {
-    if (p1.stepCount >= 101) {
+    if (p1.stepCount >= 97) {
         clearInterval(tickerInterval1);
         if (document.querySelector('#runner1').innerText.includes('🚫')) {
             alert(`Wow! ${p1.name} has cheated & won!`);
         } else {
             alert(`Wow! ${p1.name} has won!`);
         }
-    } else if (p2.stepCount >= 101) {
+    } else if (p2.stepCount >= 97) {
         clearInterval(tickerInterval2);
         if (document.querySelector('#runner2').innerText.includes('🚫')) {
             alert(`Wow! ${p2.name} has cheated & won!`);
