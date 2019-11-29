@@ -74,10 +74,9 @@ body {
     font-size: 50px;
 }
 
-.runner {
+.runners {
     font-size: 50px;
     -webkit-transform: rotateY(180deg);
-    /* https://css-tricks.com/snippets/css/reversing-text/ */
     -moz-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
@@ -85,13 +84,11 @@ body {
 }
 
 .running {
-    /*keyframe running posture*/
     animation-name: running;
     animation-fill-mode: forwards;
-    animation-duration: 0.3s;
+    /* animation-duration: 0.3s;
     animation-iteration-count: infinite;
-    /*transition: hover: L>R*/
-    transition: all 1s ease-in;
+    transition: all 1s ease-in; */
     position: absolute;
     margin-left: 1%;
 }
