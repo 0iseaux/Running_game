@@ -1,7 +1,7 @@
 'use strict';
 
 // loser can still cheat after race?
-// rearranged layout
+// runners runner anime during pause?
 
 let timeCount = 0;
 let interval1;
@@ -103,7 +103,7 @@ const pauseResume = () => {
         document.querySelector('.movingbg').className = 'bg';
 
         document.querySelectorAll('.runners').forEach(runner => {
-            runner.classList.remove('runners');
+            runner.classList.remove('runner');
         });
 
         document.querySelector('#runner1').style.left = `${p1.stepCount}vw`;
