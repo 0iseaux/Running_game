@@ -36,5 +36,4 @@ While it has clear limitations in terms of UX and development, and can certainly
 
 ## Credits
 
-Background image sourced from www.freepik.com:
-https://www.freepik.com/free-vector/flat-cityscape-pack_829214.htm
+Original background image designed by [Freepik](http://www.freepik.com) [direct link](https://www.freepik.com/free-vector/flat-cityscape-pack_829214.htm)
