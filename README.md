@@ -33,7 +33,7 @@ It is possible to (try to) cheat but **there are consequences**!
 ## Development Notes
 
 This game was developed as an experiment in the very early stage of my coding journey to explore gamemaking, as well as emojis instead of icons.
-As a result, it relies exclusively on basic HTML, CSS (including keyframes and transitions) and JavaScript DOM manipulation.
+As a result, it relies exclusively on basic HTML, CSS (e.g. keyframes and transitions) and JavaScript (e.g. DOM manipulation, ES6 classes).
 While it has clear limitations in terms of UX and development, and can certainly improve with the use of React.js and Canvas, it was a fun exercise to explore the possibilities with the most basics.
 
 ## Credits
