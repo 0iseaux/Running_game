@@ -5,14 +5,13 @@
         <title>Let's Run</title>
         <link rel="stylesheet" href="spel.css">
         <script src="spel.js"></script>
-        
     </header>
 <body>
 <div class="bg movingbg">
     <div id="info">
     <div id='p1-box'>
         <div class="p1djur p1p2djur">
-        <p class="pname" id="p1name">Player1</p> 
+        <p class="pname" id="p1name"></p> 
             <button id ="trex" class="djur djur1" data-djur="🦖" >🦖</button> 
             <button id="sauropod" class="djur djur1" data-djur="🦕">🦕</button> 
             <button id="zebra" class="djur djur1" data-djur="🦓">🦓</button> 
@@ -25,11 +24,12 @@
         <div class="auto">
             <div class="speed" id="speed1">Speed:</div><br>
             <div class="score" id="score1">Score:</div><br>
+            <div class="cheat" id="cheat1"></div>
         </div>
     </div> 
     <div id='p2-box'>
         <div class="p2djur p1p2djur">
-        <p class="pname" id="p2name">Player2</p> 
+        <p class="pname" id="p2name"></p> 
             <button id ="trex" class="djur djur2" data-djur="🦖" >🦖</button> 
             <button id="sauropod" class="djur djur2" data-djur="🦕">🦕</button> 
             <button id="zebra" class="djur djur2" data-djur="🦓">🦓</button> 
@@ -42,14 +42,15 @@
         <div class="auto">
             <div class="speed" id="speed2">Speed:</div><br>
             <div class="score" id="score2">Score:</div><br>
+            <div class="cheat" id="cheat2"></div>
         </div>  
     </div>
 </div>
     <button id="pauseResume">Pause!</button>
 
     <div class="lanes">
-            <div class="runners running cancheat" id="runner1">🐢</div>
-            <div class="runners running cancheat" id="runner2">🦆</div>
+<div class="runners running" id="runner1">🐢</div>    
+<div class="runners running" id="runner2">🦆</div>
     </div>
         
 </div>

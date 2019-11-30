@@ -15,9 +15,10 @@ class Player {
         this.nr = nr;
         this.name = prompt(`Player${nr}'s name?`, `Player${nr}`);
         this.stepCount = 0;
+        this.cheatCount = 0;
     }
     insertPlayersName = () => {
-        document.querySelector(`#p${this.nr}name`).innerText = `Player${this.nr}`;
+        document.querySelector(`#p${this.nr}name`).innerText = this.name;
     };
 
     setAnimals() {
@@ -45,54 +46,45 @@ class Player {
         )}`;
         // position
         document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}vw`;
-        // cheat
-        document.querySelector(`#runner${this.nr}`).addEventListener('mouseover', this.cheat);
         // win
-        if (this.stepCount >= 97) {
+        if (this.stepCount >= 88) {
             // race finished
-            document.querySelector(`#runner${this.nr}`).style.right = '0vw';
+            this.stepCount = 88;
             clearInterval(interval1);
             clearInterval(interval2);
             document.querySelectorAll('.runners').forEach(runner => {
-                runner.classList.remove('runners');
+                runner.className = 'runners';
             });
             document.querySelector('.movingbg').className = 'bg';
 
-            // remove cheating option
-            document
-                .querySelector(`#runner${this.nr}`)
-                .removeEventListener('mouseover', this.cheat);
-            document.querySelector(`#runner${this.nr}`).className = 'runners';
+            // remove cheating option for all
+            document.querySelector('#runner1').removeEventListener('mouseover', p1.cheat);
+            document.querySelector('#runner2').removeEventListener('mouseover', p2.cheat);
 
             // winner
-            if (document.querySelector(`#runner${this.nr}`).innerText.includes('🚫')) {
-                alert(`Oops! ${this.name} has cheated to win!`);
+            if (this.cheatCount) {
+                alert(`😑Oops! ${this.name} has cheated to win!🙄`);
             } else {
-                alert(`Wow! ${this.name} has won!`);
+                alert(`🎉Wow! ${this.name} has won!👏`);
             }
         }
     };
 
     cheat = () => {
-        document.querySelector(`#runner${this.nr}`).style.left = '97%';
-        // document.querySelector(`#runner${this.nr}`).classList.add('canCheat');
-        // document.querySelector('.canCheat').style.left = '97%';
-        document.querySelector(`#runner${this.nr}`).innerText += '🚫';
-        // document.querySelector(`#runner${this.nr}`).className += ' canCheat';
-        this.stepCount = 0;
+        this.cheatCount++;
+        console.log(this.cheatCount);
+        document.querySelector(`#runner${this.nr}`).classList.add('canCheat');
+        document.querySelector('.canCheat').style.left = '88vw';
+        document.querySelector(`#runner${this.nr}`).classList.remove('canCheat');
+        document.querySelector(`#cheat${this.nr}`).textContent = `Player${this.nr}! 🚫 CHEATING!`;
 
-        // keep cheating...
-        if (document.querySelector(`#runner${this.nr}`).innerText.split('🚫').length - 1 >= 3) {
-            document.querySelector(`#runner${this.nr}`).innerText = '🏳';
-            document.querySelector(`#runner${this.nr}`).classList.remove('canCheat');
-            document.querySelector(
-                `#score${this.nr}`,
-            ).innerHTML += `<br>Player${this.nr}! 🚫 CHEATING!`;
-
-            //remove cheating option
+        if (this.cheatCount > 30) {
             document
                 .querySelector(`#runner${this.nr}`)
                 .removeEventListener('mouseover', this.cheat);
+            document.querySelector(`#runner${this.nr}`).innerText = '🏳';
+            document.querySelector(`#score${this.nr}`).innerText = 'Score: 0';
+            this.stepCount = 0;
         }
     };
 }
@@ -103,7 +95,7 @@ const pauseResume = () => {
         document.querySelector('.movingbg').className = 'bg';
 
         document.querySelectorAll('.runners').forEach(runner => {
-            runner.classList.remove('runner');
+            runner.classList.remove('running');
         });
 
         document.querySelector('#runner1').style.left = `${p1.stepCount}vw`;
@@ -153,4 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('#pauseResume').onclick = pauseResume;
+
+    document.querySelector('#runner1').addEventListener('mouseover', p1.cheat);
+    document.querySelector('#runner2').addEventListener('mouseover', p2.cheat);
 });
