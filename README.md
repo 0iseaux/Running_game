@@ -9,18 +9,20 @@
 When prompted, enter Player 1 and Player 2's names respectively.
 The defaults are _Player 1_ and _Player 2_.
 
-### 2) Select animal icons
+### 2) Select animal icons (optional)
 
-Use the cursor to select an animal icon other than the default.
+If desired, use the cursor to select an animal icon other than the default.
 The choice can be changed anytime throughout the game.
 
-### 3) Start the race
+### 3) Start running
 
-Player 1 and Player 2 should alternate between keys **A** & **D** and **J** & **L** respectively to get her/ his animal icon to move forward. The faster the key pair is pressed, the further the animal icon moves, and scores and speeds are calculated accordingly.
+Players can start running once the players' name are set (animal icon selection is optional).
+To run, player 1 and Player 2 should between keys **A** & **D** and **J** & **L** respectively to get her / his animal icon to move forward (i.e. to the right).
+The faster the pressing, the further the animal icon moves, and scores and speeds are calculated accordingly.
 
 #### 4) Pause / resume the race
 
-Use a cursor to press the **Pause/ Resume** button to pause or resume the race.
+Use the cursor to press the **Pause/ Resume** button to pause or resume the race.
 
 #### 4) Winning
 
