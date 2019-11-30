@@ -1,5 +1,7 @@
 # Let's Run! (2-player racing game)
 
+**[Play Now](./spel.html)**
+
 ## How to Play
 
 ### 1) Set players' names
