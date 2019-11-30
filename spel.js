@@ -1,5 +1,8 @@
 'use strict';
 
+// loser can still cheat after race?
+// rearranged layout
+
 let timeCount = 0;
 let interval1;
 let interval2;
@@ -36,24 +39,22 @@ class Player {
     gamePlay = () => {
         // Score & speed
         timeCount++;
-        document.querySelector(
-            `#score${this.nr}`,
-        ).innerHTML = `Player${this.nr}'s Score: ${this.stepCount}`;
-        document.querySelector(`#speed${this.nr}`).innerHTML = `Player${
-            this.nr
-        }'s Speed: ${Math.round((this.stepCount * 1000) / timeCount)}`;
+        document.querySelector(`#score${this.nr}`).innerHTML = `Score: ${this.stepCount}`;
+        document.querySelector(`#speed${this.nr}`).innerHTML = `Speed: ${Math.round(
+            (this.stepCount * 1000) / timeCount,
+        )}`;
         // position
         document.querySelector(`#runner${this.nr}`).style.left = `${this.stepCount}vw`;
         // cheat
         document.querySelector(`#runner${this.nr}`).addEventListener('mouseover', this.cheat);
         // win
-        if (this.stepCount >= 197) {
+        if (this.stepCount >= 97) {
             // race finished
             document.querySelector(`#runner${this.nr}`).style.right = '0vw';
             clearInterval(interval1);
             clearInterval(interval2);
             document.querySelectorAll('.runners').forEach(runner => {
-                runners.classList.remove('runners');
+                runner.classList.remove('runners');
             });
             document.querySelector('.movingbg').className = 'bg';
 
@@ -61,6 +62,7 @@ class Player {
             document
                 .querySelector(`#runner${this.nr}`)
                 .removeEventListener('mouseover', this.cheat);
+            document.querySelector(`#runner${this.nr}`).className = 'runners';
 
             // winner
             if (document.querySelector(`#runner${this.nr}`).innerText.includes('🚫')) {
@@ -72,17 +74,20 @@ class Player {
     };
 
     cheat = () => {
+        document.querySelector(`#runner${this.nr}`).style.left = '97%';
+        // document.querySelector(`#runner${this.nr}`).classList.add('canCheat');
+        // document.querySelector('.canCheat').style.left = '97%';
         document.querySelector(`#runner${this.nr}`).innerText += '🚫';
+        // document.querySelector(`#runner${this.nr}`).className += ' canCheat';
         this.stepCount = 0;
 
         // keep cheating...
-        if (document.querySelector(`#runner${this.nr}`).innerText.split('🚫').length - 1 >= 8) {
+        if (document.querySelector(`#runner${this.nr}`).innerText.split('🚫').length - 1 >= 3) {
             document.querySelector(`#runner${this.nr}`).innerText = '🏳';
-            document.querySelector(`#runner${this.nr}`).classList.remove('cancheat');
-            let speed = document.querySelector(`#speed${this.nr}`);
-            let noCheat = document.createElement('p');
-            noCheat.innerHTML = `Player${this.nr}! 🚫 CHEATING!`;
-            document.querySelector('.auto').insertBefore(noCheat, speed);
+            document.querySelector(`#runner${this.nr}`).classList.remove('canCheat');
+            document.querySelector(
+                `#score${this.nr}`,
+            ).innerHTML += `<br>Player${this.nr}! 🚫 CHEATING!`;
 
             //remove cheating option
             document
@@ -108,7 +113,7 @@ const pauseResume = () => {
         clearInterval(interval2);
     } else {
         document.querySelector('#pauseResume').innerText = 'Pause!';
-        document.querySelector('.bg').className += ' movingbg';
+        document.querySelector('.bg').classList.add('movingbg');
 
         document.querySelectorAll('.runners').forEach(runner => {
             runner.classList.add('running');

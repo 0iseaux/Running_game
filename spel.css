@@ -43,14 +43,14 @@ body {
 }
 
 .pname {
-    font-size: 12px;
+    font-size: 16px;
     padding: 0;
     margin: 0;
 }
 
 .p1p2djur {
-    max-width: 60%;
-    float: left;
+    max-width: 100%;
+    margin-left: 10px;
 }
 
 .djur {
@@ -58,6 +58,7 @@ body {
     height: 30px;
     padding-bottom: 1px;
     margin: 1px;
+    border-radius: 50%;
 }
 
 .djur:hover {
@@ -84,26 +85,26 @@ body {
 }
 
 .running {
+    position: absolute;
     animation-name: running;
     animation-fill-mode: forwards;
-    /* animation-duration: 0.3s;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
-    transition: all 1s ease-in; */
-    position: absolute;
-    margin-left: 1%;
-}
-
-.running.cancheat:hover {
-    margin-left: 97%;
+    -webkit-transition: left 1s linear;
+    -moz-transition: left 1s linear;
+    -o-transition: left 1s linear;
+    transition: left 1s linear;
+    /* margin-left:1%
+    */
 }
 
 @keyframes running {
     0% {
-        -webkit-transform: rotateY(160deg);
-        -moz-transform: rotateY(160deg);
-        -ms-transform: rotateY(160deg);
-        -o-transform: rotateY(160deg);
-        transform: rotateY(160deg);
+        -webkit-transform: rotateY(150deg);
+        -moz-transform: rotateY(150deg);
+        -ms-transform: rotateY(150deg);
+        -o-transform: rotateY(150deg);
+        transform: rotateY(150deg);
     }
     100% {
         -webkit-transform: rotateY(200deg);
@@ -115,17 +116,24 @@ body {
 }
 
 #pauseResume {
-    position: relative;
-    float: left;
-    left: 3vh;
-    top: 3vh;
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    float: right;
+    right: 3vh;
+    top: 10vh;
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background-color: red;
+    background-color: rgb(206, 16, 16);
     clear: both;
-    padding: 2px;
+    padding: 5px;
     margin: 0;
+    border: 5px solid rgb(124, 8, 8);
+    border-radius: 10%;
+    -moz-box-shadow: 5px 5px #4e4e4e;
+    -webkit-box-shadow: 5px 5px #4e4e4e;
+    box-shadow: 5px 5px #4e4e4e;
 }
 
 #pauseResume:hover {
@@ -133,24 +141,23 @@ body {
 }
 
 .auto {
-    display: in-line block;
-    max-width: 40%;
-    float: right;
-    margin-right: 3vh;
+    display: block;
+    max-width: 50%;
+    float: left;
+    margin-left: 10px;
     padding: 0;
-    margin: 0;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .score {
     position: relative;
-    float: right;
+    float: left;
     clear: both;
 }
 
 .speed {
     position: relative;
-    float: right;
+    float: left;
     clear: both;
 }
 
