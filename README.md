@@ -1,6 +1,6 @@
 # Let's Run! (2-player racing game)
 
-**[Play Now](./spel.html)**
+**[Play Now](https://0iseaux.github.io/running_game/)**
 
 ## How to Play
 
