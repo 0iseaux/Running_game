@@ -24,11 +24,11 @@ The faster the pressing, the further the animal icon moves, and scores and speed
 
 Use the cursor to press the **Pause/ Resume** button to pause or resume the race.
 
-### 4) Winning
+### 5) Winning
 
 The player whose animal icon reaches the far right first wins.
 
-### 5) Cheating
+### 6) Cheating
 
 It is possible to (try to) cheat but **there are consequences**!
 
