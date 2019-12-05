@@ -20,15 +20,15 @@ Players can start running once the players' name are set (animal icon selection 
 To run, player 1 and Player 2 should between keys **A** & **D** and **J** & **L** respectively to get her / his animal icon to move forward (i.e. to the right).
 The faster the pressing, the further the animal icon moves, and scores and speeds are calculated accordingly.
 
-#### 4) Pause / resume the race
+### 4) Pause / resume the race
 
 Use the cursor to press the **Pause/ Resume** button to pause or resume the race.
 
-#### 4) Winning
+### 4) Winning
 
 The player whose animal icon reaches the far right first wins.
 
-##### 5) Cheating
+### 5) Cheating
 
 It is possible to (try to) cheat but **there are consequences**!
 
